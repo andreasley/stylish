@@ -8,6 +8,6 @@
 public extension Selector {
 
     func pseudo(_ pseudo: Pseudo) -> Selector {
-        Selector(name: name, properties: properties, pseudo: pseudo.value)
+        Selector(name: name, children: children, pseudo: pseudo.value)
     }
 }

@@ -6,7 +6,7 @@
 //
 
 /// https://www.w3schools.com/cssref/
-public struct Property {
+public struct Property: SelectorChild {
     public var name: String
     public var value: String
     var isImportant: Bool = false

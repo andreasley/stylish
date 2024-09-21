@@ -57,6 +57,12 @@ final class SwiftCssTests: XCTestCase {
             Media(screen: .s) {
                 Class("button") {
                     Color("#cafe00")
+                    Element(.span) {
+                        FontWeight(.bold)
+                        Element(.p) {
+                            Color("#000")
+                        }
+                    }
                 }
             }
             Media(screen: .dark, {
@@ -80,6 +86,12 @@ final class SwiftCssTests: XCTestCase {
                                @media screen and (min-width: 600px) {
                                    .button {
                                        color: #cafe00;
+                                   }
+                                   .button span {
+                                       font-weight: 300;
+                                   }
+                                   .button span p {
+                                       color: #000;
                                    }
                                }
                                @media screen and (prefers-color-scheme: dark) {

@@ -52,13 +52,33 @@ public struct StylesheetRenderer {
         return spaces + property.name + ":" + singleSpace + property.value + (property.isImportant ? " !important" : "")
     }
     
-    private func renderSelector(_ selector: Selector, level: Int = 0) -> String {
+    private func renderSelector(_ selector: Selector, level: Int = 0, parentSelector: String? = nil) -> String {
         let spaces = String(repeating: " ", count: level * indent)
         var suffix = ""
         if let pseudo = selector.pseudo {
             suffix = pseudo
         }
-        let properties = selector.properties.map { renderProperty($0, level: level + 1) }.joined(separator: ";" + newline) + (!minify ? ";" : "")
-        return spaces + selector.name + suffix + singleSpace + "{" + newline + properties + newline + spaces + "}"
+        
+        var output = ""
+        let fullSelectorName: String
+        if let parentSelector {
+            fullSelectorName = parentSelector + " " + selector.name
+        } else {
+            fullSelectorName = selector.name
+        }
+        
+        let properties = selector.children.compactMap { $0 as? Property }
+        if properties.count > 0 {
+            let renderedProperties = properties.map { renderProperty($0, level: level + 1) }.joined(separator: ";" + newline) + (!minify ? ";" : "")
+            output += spaces + fullSelectorName + suffix + singleSpace + "{" + newline + renderedProperties + newline + spaces + "}"
+        }
+        
+        let nestedSelectors = selector.children.compactMap { $0 as? Selector }
+        if nestedSelectors.count > 0 {
+            output += newline
+            output += nestedSelectors.map { renderSelector($0, level: level, parentSelector: fullSelectorName) }.joined(separator: newline)
+        }
+
+        return output
     }
 }

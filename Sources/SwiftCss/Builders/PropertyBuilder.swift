@@ -7,39 +7,39 @@
 
 @resultBuilder
 public enum PropertyBuilder {
-    public static func buildBlock(_ components: Property...) -> [Property] {
+    public static func buildBlock(_ components: SelectorChild...) -> [SelectorChild] {
         components
     }
     
-    public static func buildBlock(_ components: [Property]) -> [Property] {
+    public static func buildBlock(_ components: [SelectorChild]) -> [SelectorChild] {
         components
     }
     
-    public static func buildBlock(_ components: [Property]...) -> [Property] {
+    public static func buildBlock(_ components: [SelectorChild]...) -> [SelectorChild] {
         components.flatMap { $0 }
     }
 
-    public static func buildEither(first component: [Property]) -> [Property] {
+    public static func buildEither(first component: [SelectorChild]) -> [SelectorChild] {
         component
     }
 
-    public static func buildEither(second component: [Property]) -> [Property] {
+    public static func buildEither(second component: [SelectorChild]) -> [SelectorChild] {
         component
     }
 
-    public static func buildOptional(_ component: [Property]?) -> [Property] {
+    public static func buildOptional(_ component: [SelectorChild]?) -> [SelectorChild] {
         component ?? []
     }
 
-    public static func buildExpression(_ expression: Property) -> [Property] {
+    public static func buildExpression(_ expression: SelectorChild) -> [SelectorChild] {
         [expression]
     }
 
-    public static func buildExpression(_ expression: [Property]) -> [Property] {
+    public static func buildExpression(_ expression: [SelectorChild]) -> [SelectorChild] {
         expression
     }
 
-    public static func buildArray(_ components: [[Property]]) -> [Property] {
+    public static func buildArray(_ components: [[SelectorChild]]) -> [SelectorChild] {
         components.flatMap { $0 }
     }
 }
