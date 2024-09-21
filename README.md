@@ -15,9 +15,9 @@ let css = Stylesheet {
             BackgroundColor(.red)
             Color(.white)
             TextAlign(.left)
-	         Element(.p) {
+            Element(.p) {
                 FontWeight(.bold)
-	         }
+            }
         }
         .pseudo(.nthChild(2))
     }
