@@ -88,7 +88,7 @@ final class SwiftCssTests: XCTestCase {
                                        color: #cafe00;
                                    }
                                    .button span {
-                                       font-weight: 300;
+                                       font-weight: bold;
                                    }
                                    .button span p {
                                        color: #000;
