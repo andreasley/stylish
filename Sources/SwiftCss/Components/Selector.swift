@@ -6,7 +6,7 @@
 //
 
 /// https://www.w3schools.com/cssref/css_selectors.asp
-public struct Selector: SelectorChild {
+public struct Selector: SelectorChild, StylesheetChild {
     var name: String
     var children: [SelectorChild]
     var pseudo: String? = nil

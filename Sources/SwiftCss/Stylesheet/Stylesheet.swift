@@ -6,13 +6,13 @@
 //
 
 public struct Stylesheet {
-    let rules: [Rule]
+    let children: [StylesheetChild]
 
-    public init(@RuleBuilder _ builder: () -> [Rule]) {
-        self.rules = builder()
+    public init(@StylesheetChildBuilder _ builder: () -> [StylesheetChild]) {
+        self.children = builder()
     }
 
-    public init(_ rules: [Rule]) {
-        self.rules = rules
+    public init(_ children: [StylesheetChild]) {
+        self.children = children
     }
 }

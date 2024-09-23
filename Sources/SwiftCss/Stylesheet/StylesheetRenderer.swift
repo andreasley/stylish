@@ -20,8 +20,10 @@ public struct StylesheetRenderer {
     }
     
     public func render(_ stylesheet: Stylesheet) -> String {
-        stylesheet.rules.map { rule in
-            switch rule {
+        stylesheet.children.map { child in
+            switch child {
+            case let selector as Selector:
+                return renderSelector(selector)
             case let charset as Charset:
                 return #"@charset ""# + charset.name + #"";"#
             case let value as FontFace:
