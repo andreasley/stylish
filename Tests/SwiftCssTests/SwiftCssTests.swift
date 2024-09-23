@@ -42,7 +42,21 @@ final class SwiftCssTests: XCTestCase {
                                }
                                """#)
     }
-    
+
+    func testStylesheetWithoutMedia() {
+        let css = Stylesheet {
+            Id("test") {
+                FontFamily(.family("sans-serif"))
+            }
+        }
+        print(StylesheetRenderer(indent: 2).render(css))
+        XCTAssertEqual(StylesheetRenderer(indent: 2).render(css), #"""
+                               #test {
+                                 font-family: sans-serif;
+                               }
+                               """#)
+    }
+
     func testStylesheet() {
         let css = Stylesheet {
             Charset("UTF-8")

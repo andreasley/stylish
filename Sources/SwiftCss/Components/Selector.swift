@@ -6,7 +6,7 @@
 //
 
 /// https://www.w3schools.com/cssref/css_selectors.asp
-public struct Selector {
+public struct Selector: StylesheetChild {
     var name: String
     var properties: [Property]
     var pseudo: String? = nil
