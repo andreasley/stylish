@@ -57,6 +57,29 @@ final class SwiftCssTests: XCTestCase {
                                """#)
     }
 
+    func testMergingStylesheets() {
+        let stylesheet1 = Stylesheet {
+            Id("test") {
+                FontFamily(.family("sans-serif"))
+            }
+        }
+        let stylesheet2 = Stylesheet {
+            Element(.body) {
+                FontWeight(.bold)
+            }
+        }
+        let combined = Stylesheet(merging: [stylesheet1, stylesheet2])
+        print(StylesheetRenderer(indent: 2).render(combined))
+        XCTAssertEqual(StylesheetRenderer(indent: 2).render(combined), #"""
+                               #test {
+                                 font-family: sans-serif;
+                               }
+                               body {
+                                 font-weight: bold;
+                               }
+                               """#)
+    }
+
     func testStylesheet() {
         let css = Stylesheet {
             Charset("UTF-8")

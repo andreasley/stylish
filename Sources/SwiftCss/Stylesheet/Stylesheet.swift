@@ -15,4 +15,9 @@ public struct Stylesheet {
     public init(_ children: [StylesheetChild]) {
         self.children = children
     }
+    
+    public init(merging stylesheets: [Stylesheet])
+    {
+        self.children = stylesheets.map({ $0.children }).reduce([], +)
+    }
 }
