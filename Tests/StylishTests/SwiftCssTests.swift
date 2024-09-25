@@ -68,7 +68,7 @@ final class SwiftCssTests: XCTestCase {
             Media(screen: .xs) {
                 FontFace {
                     FontFamily("SuperFont")
-                    FontWeight(.bold)
+                    FontSize(12.px)
                     Property(name: "src", value: "url(SuperFont-Bold.woff2) format('woff2')")
                 }
             }
@@ -83,7 +83,7 @@ final class SwiftCssTests: XCTestCase {
                                @media screen and (max-width: 599px) {
                                  @font-face {
                                    font-family: SuperFont;
-                                   font-weight: bold;
+                                   font-size: 12px;
                                    src: url(SuperFont-Bold.woff2) format('woff2');
                                  }
                                }

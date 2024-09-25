@@ -65,6 +65,11 @@ public func FontSize(_ value: String) -> Property {
     Property(name: "font-size", value: value)
 }
 
+public func FontSize(_ value: Unit) -> Property {
+    FontSize(.length(value))
+}
+
+
 /// Specifies the font size of text
 public func FontSize(_ value: FontSizeValue = .medium) -> Property {
     FontSize(value.rawValue)
