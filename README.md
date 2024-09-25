@@ -1,6 +1,6 @@
-# SwiftCss
+# Stylish
 
-An awesome Swift CSS DSL library using result builders.
+A Swift CSS DSL library, based on [swift-css]("https://github.com/BinaryBirds/swift-css").
 
 ```swift
 let css = Stylesheet {            
@@ -39,36 +39,11 @@ let css = Stylesheet {
     }
 }
     
-print(StylesheetRenderer(minify: false, indent: 4).render(css))
+print(css.render())
 ```
-
-## Install
-
-You can simply use `SwiftCss` as a dependency via the Swift Package Manager:
-
-```swift
-.package(url: "https://github.com/binarybirds/swift-css", from: "1.0.0"),
-```
-
-Add the `SwiftCss` product from the `swift-css` package as a dependency to your target:
-
-```swift
-.product(name: "SwiftCss", package: "swift-css"),
-```
-
-Import the framework:
-
-```swift
-import SwiftCss
-```
-
-That's it.
 
 ## Credits & references
 
-- [Cascading Style Sheets](https://www.w3.org/Style/CSS/)
-- [CSS Snapshot 2020](https://www.w3.org/TR/css-2020/) 
-- [CSS Working Group Editor Drafts](https://drafts.csswg.org/)
-- [W3Schools CSS reference](https://www.w3schools.com/cssref/)
-- [CSS: Cascading Style Sheets](https://developer.mozilla.org/en-US/docs/Web/CSS)
-- [CSS3](https://www.quackit.com/css/css3/)
+- [The original SwiftCss library by BinaryBirds](https://github.com/BinaryBirds/swift-css)
+- [W3: Cascading Style Sheets](https://www.w3.org/Style/CSS/)
+- [MDN CSS Documentation](https://developer.mozilla.org/en-US/docs/Web/CSS)
