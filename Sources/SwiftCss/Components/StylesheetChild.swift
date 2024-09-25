@@ -1,1 +1,1 @@
-public protocol StylesheetChild {}
+public protocol StylesheetChild: Renderable {}

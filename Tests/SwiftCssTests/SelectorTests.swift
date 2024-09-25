@@ -13,11 +13,9 @@ final class SelectorTests: XCTestCase {
     // MARK: - margin
 
     func testRules() {
-        let css = Stylesheet([
-            Charset("UTF-8")
-        ])
+        let css = Stylesheet(charset: "UTF-8", [])
         
-        XCTAssertEqual(StylesheetRenderer().render(css), #"""
+        XCTAssertEqual(css.render(), #"""
                                @charset "UTF-8";
                                """#)
     }
@@ -32,7 +30,7 @@ final class SelectorTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(StylesheetRenderer().render(css), #"""
+        XCTAssertEqual(css.render(), #"""
                                * {
                                    margin-top: 8px;
                                    margin-bottom: 25%;
@@ -54,7 +52,7 @@ final class SelectorTests: XCTestCase {
             }
         }
 
-        XCTAssertEqual(StylesheetRenderer().render(css), #"""
+        XCTAssertEqual(css.render(), #"""
                                * {
                                    padding: 0;
                                    padding: 8rem;

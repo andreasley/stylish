@@ -11,8 +11,7 @@ import XCTest
 final class SwiftCssTests: XCTestCase {
     
     func testMinifiedStylesheet() {
-        let css = Stylesheet {
-            Charset("UTF-8")
+        let css = Stylesheet(charset: "UTF-8") {
             Media {
                 Root {
                     Margin(vertical: .px(8.5), horizontal: .px(8))
@@ -20,12 +19,13 @@ final class SwiftCssTests: XCTestCase {
                 }
             }
         }
-        XCTAssertEqual(StylesheetRenderer(minify: true, indent: 2).render(css), #"@charset "UTF-8";:root{margin:8.5px 8px;padding:8px 8px}"#)
+        let rendered = css.render(configuration: .init(minify: true, indent: 2))
+        print(rendered)
+        XCTAssertEqual(rendered, #"@charset "UTF-8";:root{margin:8.5px 8px;padding:8px 8px}"#)
     }
     
     func testCustomIndentStylesheet() {
-        let css = Stylesheet {
-            Charset("UTF-8")
+        let css = Stylesheet(charset: "UTF-8") {
             Media {
                 Root {
                     Margin(vertical: .px(8.5), horizontal: .px(8))
@@ -33,8 +33,9 @@ final class SwiftCssTests: XCTestCase {
                 }
             }
         }
-        print(StylesheetRenderer(indent: 2).render(css))
-        XCTAssertEqual(StylesheetRenderer(indent: 2).render(css), #"""
+        let rendered = css.render(configuration: .init(indent: 2))
+        print(rendered)
+        XCTAssertEqual(rendered, #"""
                                @charset "UTF-8";
                                :root {
                                  margin: 8.5px 8px;
@@ -49,10 +50,42 @@ final class SwiftCssTests: XCTestCase {
                 FontFamily(.family("sans-serif"))
             }
         }
-        print(StylesheetRenderer(indent: 2).render(css))
-        XCTAssertEqual(StylesheetRenderer(indent: 2).render(css), #"""
+        let rendered = css.render(configuration: .init(indent: 2))
+        print(rendered)
+        XCTAssertEqual(rendered, #"""
                                #test {
                                  font-family: sans-serif;
+                               }
+                               """#)
+    }
+
+    func testFontFace() {
+        let css = Stylesheet {
+            FontFace {
+                FontFamily("SuperFont")
+                Property(name: "src", value: "url(SuperFont.woff2) format('woff2')")
+            }
+            Media(screen: .xs) {
+                FontFace {
+                    FontFamily("SuperFont")
+                    FontWeight(.bold)
+                    Property(name: "src", value: "url(SuperFont-Bold.woff2) format('woff2')")
+                }
+            }
+        }
+        let rendered = css.render(configuration: .init(indent: 2))
+        print(rendered)
+        XCTAssertEqual(rendered, #"""
+                               @font-face {
+                                 font-family: SuperFont;
+                                 src: url(SuperFont.woff2) format('woff2');
+                               }
+                               @media screen and (max-width: 599px) {
+                                 @font-face {
+                                   font-family: SuperFont;
+                                   font-weight: bold;
+                                   src: url(SuperFont-Bold.woff2) format('woff2');
+                                 }
                                }
                                """#)
     }
@@ -69,8 +102,9 @@ final class SwiftCssTests: XCTestCase {
             }
         }
         let combined = Stylesheet(merging: [stylesheet1, stylesheet2])
-        print(StylesheetRenderer(indent: 2).render(combined))
-        XCTAssertEqual(StylesheetRenderer(indent: 2).render(combined), #"""
+        let rendered = combined.render(configuration: .init(indent: 2))
+        print(rendered)
+        XCTAssertEqual(rendered, #"""
                                #test {
                                  font-family: sans-serif;
                                }
@@ -81,8 +115,7 @@ final class SwiftCssTests: XCTestCase {
     }
 
     func testStylesheet() {
-        let css = Stylesheet {
-            Charset("UTF-8")
+        let css = Stylesheet(charset: "UTF-8") {
 
             Media {
                 Root {
@@ -114,7 +147,9 @@ final class SwiftCssTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(StylesheetRenderer().render(css), #"""
+        let rendered = css.render()
+        print(rendered)
+        XCTAssertEqual(rendered, #"""
                                @charset "UTF-8";
                                :root {
                                    margin: 8.5px 8px;
@@ -172,7 +207,9 @@ final class SwiftCssTests: XCTestCase {
             }
         }
 
-        XCTAssertEqual(StylesheetRenderer().render(css), #"""
+        let rendered = css.render()
+        print(rendered)
+        XCTAssertEqual(rendered, #"""
                                :root {
                                    --size: 400px;
                                }
@@ -221,7 +258,9 @@ final class SwiftCssTests: XCTestCase {
             }
         }
 
-        XCTAssertEqual(StylesheetRenderer().render(css), #"""
+        let rendered = css.render()
+        print(rendered)
+        XCTAssertEqual(rendered, #"""
                                :root {
                                    background: red;
                                }

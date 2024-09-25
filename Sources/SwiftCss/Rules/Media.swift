@@ -25,14 +25,25 @@ public struct Media: Rule {
     }
 
     var query: String?
-    var selectors: [Selector]
+    var children: [RuleChild]
 
-    public init(_ query: String? = nil, @SelectorBuilder _ builder: () -> [Selector]) {
+    public init(_ query: String? = nil, @ChildBuilder<RuleChild> _ builder: () -> [RuleChild]) {
         self.query = query
-        self.selectors = builder()
+        self.children = builder()
     }
     
-    public init(screen: Screen, @SelectorBuilder _ builder: () -> [Selector]) {
+    public init(screen: Screen, @ChildBuilder<RuleChild> _ builder: () -> [RuleChild]) {
         self.init(screen.rawValue, builder)
     }    
+}
+
+extension Media {
+    public func render(configuration: RenderConfiguration, level: Int, parentSelector: String?) -> String {
+        let level = query != nil ? 1 : 0
+        var output = children.map { $0.render(configuration: configuration, level: level, parentSelector: nil) }.joined(separator: configuration.newline)
+        if let query = query {
+            output = "@media " + query + configuration.singleSpace + "{" + configuration.newline + output + configuration.newline + "}"
+        }
+        return output
+    }
 }

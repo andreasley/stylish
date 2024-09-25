@@ -1,10 +1,10 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.9
 import PackageDescription
 
 let package = Package(
     name: "swift-css",
     platforms: [
-       .macOS(.v10_15)
+        .macOS(.v13)
     ],
     products: [
         .library(name: "SwiftCss", targets: ["SwiftCss"]),

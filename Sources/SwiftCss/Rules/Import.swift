@@ -17,3 +17,9 @@ public struct Import: Rule {
         self.name = name
     }
 }
+
+extension Import {
+    public func render(configuration: RenderConfiguration, level: Int, parentSelector: String?) -> String {
+        "@import " + name + ";"
+    }
+}

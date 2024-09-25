@@ -25,3 +25,9 @@ public struct Property: SelectorChild {
     }
 }
 
+extension Property {
+    public func render(configuration: RenderConfiguration, level: Int, parentSelector: String?) -> String {
+        let spaces = String(repeating: " ", count: level * configuration.indent)
+        return spaces + name + ":" + configuration.singleSpace + value + (isImportant ? " !important" : "")
+    }
+}
