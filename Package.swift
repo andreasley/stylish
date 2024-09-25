@@ -2,22 +2,22 @@
 import PackageDescription
 
 let package = Package(
-    name: "swift-css",
+    name: "stylish",
     platforms: [
         .macOS(.v13)
     ],
     products: [
-        .library(name: "SwiftCss", targets: ["SwiftCss"]),
+        .library(name: "Stylish", targets: ["Stylish"]),
     ],
     dependencies: [
         
     ],
     targets: [
-        .target(name: "SwiftCss", dependencies: [
+        .target(name: "Stylish", dependencies: [
             
         ]),
-        .testTarget(name: "SwiftCssTests", dependencies: [
-            .target(name: "SwiftCss"),
+        .testTarget(name: "StylishTests", dependencies: [
+            .target(name: "Stylish"),
         ]),
     ]
 )

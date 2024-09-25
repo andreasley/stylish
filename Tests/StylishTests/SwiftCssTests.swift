@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import SwiftCss
+@testable import Stylish
 
 final class SwiftCssTests: XCTestCase {
     
