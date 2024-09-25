@@ -8,7 +8,7 @@
 import XCTest
 @testable import Stylish
 
-final class SwiftCssTests: XCTestCase {
+final class StylishTests: XCTestCase {
     
     func testMinifiedStylesheet() {
         let css = Stylesheet(charset: "UTF-8") {
