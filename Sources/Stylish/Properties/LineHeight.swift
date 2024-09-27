@@ -33,6 +33,10 @@ public enum LineHeightValue {
     }
 }
 
+public func LineHeight(_ unit: Unit) -> Property {
+    LineHeight(unit.rawValue)
+}
+
 public func LineHeight(_ value: String) -> Property {
     Property(name: "line-height", value: value)
 }
