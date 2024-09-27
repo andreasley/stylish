@@ -31,7 +31,7 @@ public enum BorderRadiusValue {
 }
 
 public func BorderRadius(_ unit: Unit) -> Property {
-    Property(name: "border-radius", value: unit.rawValue)
+    BorderRadius(unit.rawValue)
 }
 
 public func BorderRadius(_ value: String) -> Property {
