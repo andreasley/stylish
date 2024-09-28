@@ -7,7 +7,7 @@
 
 public extension Selector {
 
-    func pseudo(_ pseudo: Pseudo) -> Selector {
+    func pseudo(_ pseudo: PseudoClass) -> Selector {
         Selector(name: name, children: children, pseudo: pseudo.value)
     }
 }

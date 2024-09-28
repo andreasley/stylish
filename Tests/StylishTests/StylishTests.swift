@@ -117,6 +117,12 @@ final class StylishTests: XCTestCase {
     func testStylesheet() {
         let css = Stylesheet(charset: "UTF-8") {
             
+            Element(.input) {
+                Pseudo(.focus) {
+                    BackgroundColor(.red)
+                }
+            }
+            
             Element(.a) {
                 TextDecorationLine(.underline)
                 Element(.p) {
@@ -158,6 +164,9 @@ final class StylishTests: XCTestCase {
         print(rendered)
         XCTAssertEqual(rendered, #"""
                                @charset "UTF-8";
+                               input:focus {
+                                   background-color: red;
+                               }
                                a:hover {
                                    text-decoration-line: underline;
                                }
