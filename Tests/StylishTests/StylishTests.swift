@@ -117,11 +117,9 @@ final class StylishTests: XCTestCase {
     func testStylesheet() {
         let css = Stylesheet(charset: "UTF-8") {
 
-            Media {
-                Root {
-                    Margin(vertical: .px(8.5), horizontal: .px(8))
-                    Padding(vertical: .px(8), horizontal: .px(8))
-                }
+            Root {
+                Margin(vertical: .px(8.5), horizontal: .px(8))
+                Padding(vertical: .px(8), horizontal: .px(8))
             }
 
             Media(screen: .s) {
@@ -135,11 +133,11 @@ final class StylishTests: XCTestCase {
                     }
                 }
             }
-            Media(screen: .dark, {
+            Media(screen: .dark) {
                 All {
                     Margin(vertical: .px(8), horizontal: .px(8))
                 }
-            })
+            }
             Media(screen: .standalone) {
                 Id("lead") {
                     Background(.color(.red))
