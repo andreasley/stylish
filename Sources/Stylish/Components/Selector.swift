@@ -37,24 +37,25 @@ extension Selector {
         var output = ""
         let fullSelectorName: String
         if let parentSelector {
-            fullSelectorName = parentSelector + " " + self.name
+            fullSelectorName = parentSelector + " " + self.name + suffix
         } else {
-            fullSelectorName = self.name
+            fullSelectorName = self.name + suffix
         }
         
         let properties = children.filter { $0 is Property }
         if properties.count > 0 {
             let renderedProperties = properties.map { $0.render(configuration: configuration, level: level + 1, parentSelector: fullSelectorName) }.joined(separator: ";" + configuration.newline) + (!configuration.minify ? ";" : "")
-            output += spaces + fullSelectorName + suffix + configuration.singleSpace + "{" + configuration.newline + renderedProperties + configuration.newline + spaces + "}"
+            output += spaces + fullSelectorName + configuration.singleSpace + "{" + configuration.newline + renderedProperties + configuration.newline + spaces + "}"
         }
         
         let nestedSelectors = children.filter { !($0 is Property) }
         if nestedSelectors.count > 0 {
-            output += configuration.newline
+            if output != "" {
+                output += configuration.newline
+            }
             output += nestedSelectors.map { $0.render(configuration: configuration, level: level, parentSelector: fullSelectorName) }.joined(separator: configuration.newline)
         }
 
         return output
     }
 }
-

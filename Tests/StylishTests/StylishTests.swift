@@ -116,6 +116,13 @@ final class StylishTests: XCTestCase {
 
     func testStylesheet() {
         let css = Stylesheet(charset: "UTF-8") {
+            
+            Element(.a) {
+                TextDecorationLine(.underline)
+                Element(.p) {
+                    Color(.black)
+                }
+            }.pseudo(.hover)
 
             Root {
                 Margin(vertical: .px(8.5), horizontal: .px(8))
@@ -133,11 +140,13 @@ final class StylishTests: XCTestCase {
                     }
                 }
             }
+            
             Media(screen: .dark) {
                 All {
                     Margin(vertical: .px(8), horizontal: .px(8))
                 }
             }
+            
             Media(screen: .standalone) {
                 Id("lead") {
                     Background(.color(.red))
@@ -149,6 +158,12 @@ final class StylishTests: XCTestCase {
         print(rendered)
         XCTAssertEqual(rendered, #"""
                                @charset "UTF-8";
+                               a:hover {
+                                   text-decoration-line: underline;
+                               }
+                               a:hover p {
+                                   color: black;
+                               }
                                :root {
                                    margin: 8.5px 8px;
                                    padding: 8px 8px;
