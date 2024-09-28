@@ -4,22 +4,20 @@ A Swift CSS DSL library, based on [swift-css]("https://github.com/BinaryBirds/sw
 
 ```swift
 let css = Stylesheet {            
-    Media {
-        All {
-            Background("#222")
+    All {
+        Background("#222")
+    }
+    Element(.div) {
+        Color(.white)
+        TextAlign(.left)
+        Element(.p) {
+            FontWeight(.bold)
         }
-        Root {
-            Color(.blue)
-        }
-        Element(.div) {
+	}
+    Element(.input) {
+        Pseudo(.focus) {
             BackgroundColor(.red)
-            Color(.white)
-            TextAlign(.left)
-            Element(.p) {
-                FontWeight(.bold)
-            }
         }
-        .pseudo(.nthChild(2))
     }
     Media("only screen and (max-width: 600px)") {
         Id("custom-identifier") {
