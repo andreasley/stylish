@@ -125,6 +125,11 @@ final class StylishTests: XCTestCase {
             
             Element(.a) {
                 TextDecorationLine(.underline)
+                Child {
+                    Element(.span) {
+                        Color(.gray)
+                    }
+                }
                 Element(.p) {
                     Color(.black)
                 }
@@ -169,6 +174,9 @@ final class StylishTests: XCTestCase {
                                }
                                a:hover {
                                    text-decoration-line: underline;
+                               }
+                               a:hover > span {
+                                   color: gray;
                                }
                                a:hover p {
                                    color: black;

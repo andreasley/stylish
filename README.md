@@ -13,6 +13,11 @@ let css = Stylesheet {
         Element(.p) {
             FontWeight(.bold)
         }
+        Child {
+	        Element(.span) {
+	            BackgroundColor(.gray)
+	        }
+        }
 	}
     Element(.input) {
         Pseudo(.focus) {
