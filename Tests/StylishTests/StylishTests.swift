@@ -129,6 +129,9 @@ final class StylishTests: XCTestCase {
                     Element(.span) {
                         Color(.gray)
                     }
+                    Element(.div) {
+                        Color(.orange)
+                    }
                 }
                 Element(.p) {
                     Color(.black)
@@ -177,6 +180,9 @@ final class StylishTests: XCTestCase {
                                }
                                a:hover > span {
                                    color: gray;
+                               }
+                               a:hover > div {
+                                   color: orange;
                                }
                                a:hover p {
                                    color: black;
