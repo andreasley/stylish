@@ -119,6 +119,9 @@ final class StylishTests: XCTestCase {
             
             Element(.input) {
                 Pseudo(.focus) {
+                    BackgroundColor(.blue)
+                }
+                WithClass("invalid") {
                     BackgroundColor(.red)
                 }
             }
@@ -173,6 +176,9 @@ final class StylishTests: XCTestCase {
         XCTAssertEqual(rendered, #"""
                                @charset "UTF-8";
                                input:focus {
+                                   background-color: blue;
+                               }
+                               input.invalid {
                                    background-color: red;
                                }
                                a:hover {
