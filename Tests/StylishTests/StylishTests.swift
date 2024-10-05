@@ -123,6 +123,9 @@ final class StylishTests: XCTestCase {
                 }
                 WithClass("invalid") {
                     BackgroundColor(.red)
+                    Attribute("data-test", .contains("123")) {
+                        FontWeight(.bold)
+                    }
                 }
             }
             
@@ -181,6 +184,9 @@ final class StylishTests: XCTestCase {
                                }
                                input.invalid {
                                    background-color: red;
+                               }
+                               input.invalid[data-test*="123"] {
+                                   font-weight: bold;
                                }
                                a:hover {
                                    text-decoration-line: underline;
