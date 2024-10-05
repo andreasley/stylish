@@ -56,8 +56,8 @@ public func BoxShadow(_ value: BoxShadowValue = .none) -> Property {
     BoxShadow(value.rawValue)
 }
 
-public func BoxShadow(_ hOffset: Unit,
-                      _ vOffset: Unit,
+public func BoxShadow(hOffset: Unit = .zero,
+                      vOffset: Unit = .zero,
                       blur: Unit? = nil,
                       spread: Unit? = nil,
                       color: CSSColor,
