@@ -20,6 +20,10 @@ public func ZIndex(_ value: String) -> Property {
     Property(name: "z-index", value: value)
 }
 
+public func ZIndex(_ value: Int) -> Property {
+    Property(name: "z-index", value: String(value))
+}
+
 /// Sets the stack order of a positioned element
 public func ZIndex(_ value: ZIndexValue = .auto) -> Property {
     ZIndex(value.rawValue)

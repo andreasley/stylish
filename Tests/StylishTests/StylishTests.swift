@@ -167,6 +167,7 @@ final class StylishTests: XCTestCase {
             Media(screen: .standalone) {
                 Id("lead") {
                     Background(.color(.red))
+                    ZIndex(100)
                 }
             }
         }
@@ -216,6 +217,7 @@ final class StylishTests: XCTestCase {
                                @media screen and (display-mode: standalone) {
                                    #lead {
                                        background: red;
+                                       z-index: 100;
                                    }
                                }
                                """#)
