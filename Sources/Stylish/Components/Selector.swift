@@ -28,13 +28,11 @@ public struct Selector: StylesheetChild, SelectorChild, RuleChild  {
 
 extension Selector {
     public func render(configuration: RenderConfiguration, level: Int = 0, parentSelector: String? = nil) -> String {
-        let spaces = String(repeating: " ", count: level * configuration.indent)
         var suffix = ""
         if let pseudo {
             suffix = pseudo
         }
         
-        var output = ""
         let fullSelectorName: String
         if let parentSelector {
             fullSelectorName = parentSelector + " " + self.name + suffix
