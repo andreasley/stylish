@@ -228,7 +228,30 @@ final class StylishTests: XCTestCase {
                                }
                                """#)
     }
-    
+
+    func testEmptyStylesheet() {
+        let css = Stylesheet {}
+        let rendered = css.render()
+        print(rendered)
+        XCTAssertEqual(rendered, "")
+    }
+
+    func testEmptySelector() {
+        let css = Stylesheet {
+            Element(.a) {}
+            Element(.div) {
+                FontWeight(.bold)
+            }
+        }
+        let rendered = css.render()
+        print(rendered)
+        XCTAssertEqual(rendered, #"""
+                               div {
+                                   font-weight: bold;
+                               }
+                               """#)
+    }
+
     func testVariable() {
         let css = Stylesheet {
             Media {

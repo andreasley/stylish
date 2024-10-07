@@ -4,7 +4,7 @@
 //
 //  Created by Tibor Bodecs on 2021. 07. 09..
 //
-public struct Stylesheet: Renderable {
+public struct Stylesheet {
     let charset: String?
     let children: [Renderable]
 
@@ -25,7 +25,7 @@ public struct Stylesheet: Renderable {
 }
 
 extension Stylesheet {
-    public func render(configuration: RenderConfiguration = .init(), level: Int = 0, parentSelector: String? = nil) -> String {
+    public func render(configuration: RenderConfiguration = .init()) -> String {
         var output = ""
         if let charset {
             output += "@charset \"\(charset)\";"
@@ -34,7 +34,7 @@ extension Stylesheet {
             }
         }
         if children.count > 0 {
-            output += children.map { $0.render(configuration: configuration, level: level, parentSelector: nil) }.joined(separator: configuration.newline)
+            output += children.compactMap { $0.render(configuration: configuration, level: 0, parentSelector: nil) }.joined(separator: configuration.newline)
         }
         return output
     }

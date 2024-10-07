@@ -19,7 +19,8 @@ public struct Import: Rule {
 }
 
 extension Import {
-    public func render(configuration: RenderConfiguration, level: Int, parentSelector: String?) -> String {
-        "@import " + name + ";"
+    public func render(configuration: RenderConfiguration, level: Int, parentSelector: String?) -> String? {
+        guard !name.isEmpty else { return nil }
+        return "@import " + name + ";"
     }
 }

@@ -1,5 +1,9 @@
 @resultBuilder
 public enum ChildBuilder<T> {
+    public static func buildBlock() -> [T] {
+        []
+    }
+
     public static func buildBlock(_ components: T...) -> [T] {
         components
     }

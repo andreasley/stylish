@@ -17,8 +17,9 @@ public struct Keyframes: Rule {
 }
 
 extension Keyframes {
-    public func render(configuration: RenderConfiguration, level: Int, parentSelector: String?) -> String {
-        let selectors = selectors.map { $0.render(configuration: configuration, level: level + 1, parentSelector: nil) }.joined(separator: configuration.newline)
-        return "@keyframes " + name + configuration.singleSpace + "{" + configuration.newline + selectors + configuration.newline + "}" + configuration.newline
+    public func render(configuration: RenderConfiguration, level: Int, parentSelector: String?) -> String? {
+        let renderedSelectors = selectors.compactMap { $0.render(configuration: configuration, level: level + 1, parentSelector: nil) }.joined(separator: configuration.newline)
+        guard !renderedSelectors.isEmpty else { return nil }
+        return "@keyframes " + name + configuration.singleSpace + "{" + configuration.newline + renderedSelectors + configuration.newline + "}" + configuration.newline
     }
 }

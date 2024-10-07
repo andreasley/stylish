@@ -38,12 +38,16 @@ public struct Media: Rule {
 }
 
 extension Media {
-    public func render(configuration: RenderConfiguration, level: Int, parentSelector: String?) -> String {
+    public func render(configuration: RenderConfiguration, level: Int, parentSelector: String?) -> String? {
         let level = query != nil ? 1 : 0
-        var output = children.map { $0.render(configuration: configuration, level: level, parentSelector: nil) }.joined(separator: configuration.newline)
-        if let query = query {
-            output = "@media " + query + configuration.singleSpace + "{" + configuration.newline + output + configuration.newline + "}"
+        let renderedChildren = children.compactMap { $0.render(configuration: configuration, level: level, parentSelector: nil) }.joined(separator: configuration.newline)
+
+        guard !renderedChildren.isEmpty else { return nil }
+
+        if let query {
+            return "@media " + query + configuration.singleSpace + "{" + configuration.newline + renderedChildren + configuration.newline + "}"
+        } else {
+            return renderedChildren
         }
-        return output
     }
 }

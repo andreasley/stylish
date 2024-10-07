@@ -39,7 +39,7 @@ public struct Attribute: StylesheetChild, SelectorChild, RuleChild  {
 }
 
 extension Attribute {
-    public func render(configuration: RenderConfiguration, level: Int = 0, parentSelector: String? = nil) -> String {
+    public func render(configuration: RenderConfiguration, level: Int = 0, parentSelector: String? = nil) -> String? {
         
         func quoted(_ value: String) -> String {
             "\"" + value + "\""

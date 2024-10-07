@@ -17,8 +17,8 @@ public struct Pseudo: SelectorChild  {
 }
 
 extension Pseudo {
-    public func render(configuration: RenderConfiguration, level: Int = 0, parentSelector: String? = nil) -> String {
-        guard let parentSelector else { return "" }
+    public func render(configuration: RenderConfiguration, level: Int = 0, parentSelector: String? = nil) -> String? {
+        guard let parentSelector else { return nil }
         let fullSelectorName = parentSelector + pseudo
         return children.render(selector: fullSelectorName, configuration: configuration, level: level)
     }

@@ -27,7 +27,7 @@ public struct Selector: StylesheetChild, SelectorChild, RuleChild  {
 }
 
 extension Selector {
-    public func render(configuration: RenderConfiguration, level: Int = 0, parentSelector: String? = nil) -> String {
+    public func render(configuration: RenderConfiguration, level: Int = 0, parentSelector: String? = nil) -> String? {
         var suffix = ""
         if let pseudo {
             suffix = pseudo

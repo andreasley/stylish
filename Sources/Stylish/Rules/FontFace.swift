@@ -14,9 +14,11 @@ public struct FontFace: StylesheetChild, RuleChild {
 }
 
 extension FontFace {
-    public func render(configuration: RenderConfiguration, level: Int, parentSelector: String?) -> String {
-        let properties = properties.map { $0.render(configuration: configuration, level: level + 1, parentSelector: nil) }.joined(separator: ";" + configuration.newline)
+    public func render(configuration: RenderConfiguration, level: Int, parentSelector: String?) -> String? {
+        let renderedProperties = properties.compactMap { $0.render(configuration: configuration, level: level + 1, parentSelector: nil) }.joined(separator: ";" + configuration.newline)
         let spaces = String(repeating: " ", count: level * configuration.indent)
-        return spaces + "@font-face {" + configuration.newline + properties + (!configuration.minify ? ";" : "") + configuration.newline + spaces + "}"
+        
+        guard !renderedProperties.isEmpty else { return nil }
+        return spaces + "@font-face {" + configuration.newline + renderedProperties + (!configuration.minify ? ";" : "") + configuration.newline + spaces + "}"
     }
 }
