@@ -118,6 +118,7 @@ final class StylishTests: XCTestCase {
         let css = Stylesheet(charset: "UTF-8") {
             
             Element(.input) {
+                Outline(.none)
                 Pseudo(.focus) {
                     BackgroundColor(.blue)
                 }
@@ -189,6 +190,9 @@ final class StylishTests: XCTestCase {
         print(rendered)
         XCTAssertEqual(rendered, #"""
                                @charset "UTF-8";
+                               input {
+                                   outline: none;
+                               }
                                input:focus {
                                    background-color: blue;
                                }
