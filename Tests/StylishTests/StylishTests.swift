@@ -121,6 +121,16 @@ final class StylishTests: XCTestCase {
                 Pseudo(.focus) {
                     BackgroundColor(.blue)
                 }
+                Pseudo(.invalid) {
+                    NextSibling {
+                        Element(.span) {
+                            Pseudo(.after) {
+                                Content("\"X\"")
+                                Color(.red)
+                            }
+                        }
+                    }
+                }
                 WithClass("invalid") {
                     BackgroundColor(.red)
                     Attribute("data-test", .contains("123")) {
@@ -181,6 +191,10 @@ final class StylishTests: XCTestCase {
                                @charset "UTF-8";
                                input:focus {
                                    background-color: blue;
+                               }
+                               input:invalid + span::after {
+                                   content: "X";
+                                   color: red;
                                }
                                input.invalid {
                                    background-color: red;
