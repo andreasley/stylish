@@ -1,4 +1,4 @@
-public protocol Renderable {
+public protocol Renderable: Sendable {
     func render(configuration: RenderConfiguration, level: Int, parentSelector: String?) -> String?
 }
 

@@ -4,7 +4,7 @@
 //
 //  Created by Tibor Bodecs on 2021. 07. 09..
 //
-public struct Stylesheet {
+public struct Stylesheet: Sendable {
     let charset: String?
     let children: [Renderable]
 

@@ -2,7 +2,7 @@ import Foundation
 
 public struct Attribute: StylesheetChild, SelectorChild, RuleChild  {
     
-    public enum AttributeValue {
+    public enum AttributeValue: Sendable {
         case exists
         case matches(_ value: String)
         case contains(_ value: String)
@@ -12,7 +12,7 @@ public struct Attribute: StylesheetChild, SelectorChild, RuleChild  {
         case hasLanguageSubcode(_ value: String)
     }
 
-    public enum TextComparison {
+    public enum TextComparison: Sendable {
         case caseInsensitive
         @available(*, deprecated, message: "Lacking browser support")
         case caseSensitive
