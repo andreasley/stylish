@@ -9,6 +9,10 @@ public func Gap(_ value: String) -> Property {
     Property(name: "gap", value: value)
 }
 
+public func Gap(_ value: Unit) -> Property {
+    Gap(value.rawValue)
+}
+
 /// A shorthand property for the row-gap and the column-gap properties
 public func Gap(_ row: RowGapValue, _ col: ColumnGapValue) -> Property {
     Gap([row.rawValue, col.rawValue].joined(separator: " "))
