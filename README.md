@@ -14,11 +14,11 @@ let css = Stylesheet {
             FontWeight(.bold)
         }
         Child {
-	        Element(.span) {
-	            BackgroundColor(.gray)
-	        }
+            Element(.span) {
+                BackgroundColor(.gray)
+            }
         }
-	}
+    }
     Element(.input) {
         Pseudo(.focus) {
             BackgroundColor(.red)
