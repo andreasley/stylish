@@ -23,6 +23,9 @@ let css = Stylesheet {
         Pseudo(.focus) {
             BackgroundColor(.red)
         }
+        Attribute("type", .matches("text")) {
+            FontSize(14.px)
+        }
     }
     Media("only screen and (max-width: 600px)") {
         Id("custom-identifier") {
