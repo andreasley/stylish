@@ -37,3 +37,8 @@ public func Left(_ value: String) -> Property {
 public func Left(_ value: LeftValue = .auto) -> Property {
     Left(value.rawValue)
 }
+
+/// Specifies the left position of a positioned element
+public func Left(_ value: Unit) -> Property {
+    Top(.length(value))
+}

@@ -37,3 +37,8 @@ public func Bottom(_ value: String) -> Property {
 public func Bottom(_ value: BottomValue = .auto) -> Property {
     Bottom(value.rawValue)
 }
+
+/// Sets the elements position, from the bottom of its parent element
+public func Bottom(_ value: Unit) -> Property {
+    Top(.length(value))
+}
