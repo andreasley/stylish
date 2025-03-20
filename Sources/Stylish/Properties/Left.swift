@@ -40,5 +40,5 @@ public func Left(_ value: LeftValue = .auto) -> Property {
 
 /// Specifies the left position of a positioned element
 public func Left(_ value: Unit) -> Property {
-    Top(.length(value))
+    Left(.length(value))
 }
